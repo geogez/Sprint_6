@@ -1,5 +1,4 @@
 import time
-
 import allure
 from pages.order_page import OrderPage
 from locators.locators_order_page import LocatorsOrderPage
@@ -18,7 +17,7 @@ class TestOrder:
         order_page.fill_form_one()
         order_page.click_next_button()
         order_page.fill_form_two()
-        assert 'Номер заказа' in order_page.get_element_text(LocatorsOrderPage.order_is_processed)
+        assert order_page.is_order_processed_text_visible()
 
     @allure.title('Проверка заказа через нижнюю кнопку "Заказать"')
     @allure.description(
@@ -32,4 +31,4 @@ class TestOrder:
         order_page.fill_form_one()
         order_page.button_next()
         order_page.fill_form_two()
-        assert 'Номер заказа' in order_page.get_element_text(LocatorsOrderPage.order_is_processed)
+        assert order_page.is_order_processed_text_visible()

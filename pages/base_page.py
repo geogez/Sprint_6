@@ -1,5 +1,6 @@
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support import expected_conditions as EC
 
 '''
 Этот класс не описывает конкретную страницу
@@ -11,7 +12,8 @@ from selenium.webdriver.support import expected_conditions
 class BasePage:
     def __init__(self, browser):
         self.browser = browser
-
+    def wait_until_clickable(self, locator):
+        WebDriverWait(self.browser, 3).until(EC.element_to_be_clickable(locator))
     def find(self, locator):
         return self.browser.find_element(*locator)
 
@@ -22,7 +24,7 @@ class BasePage:
         self.find(locator).click()
 
     def get_element_text(self, locator):
-        WebDriverWait(self.browser, 5).until(expected_conditions.visibility_of_element_located(locator))
+        self.element_is_visible(locator)
         return self.find(locator).text
 
     def scroll_to_element(self, locator):

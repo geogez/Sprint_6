@@ -10,7 +10,7 @@ class MainPage(BasePage):
         super().__init__(browser)
 
     def click_button_question(self, locator):
-        WebDriverWait(self.browser, 3).until(EC.element_to_be_clickable(locator))
+        self.wait_until_clickable(locator)
         self.click_button(locator)
 
     @allure.step('Нажать кнопку принять куки')

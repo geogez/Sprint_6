@@ -20,6 +20,12 @@ class OrderPage(BasePage):
     def click_cookie_button(self):
         self.click_button(LocatorsMainPage.cookie_button)
 
+    def is_order_processed_text_visible(self):
+        return 'Номер заказа' in self.get_element_text(LocatorsOrderPage.order_is_processed)
+
+    def is_order_processed_text_visible(self):
+        return 'Номер заказа' in self.get_element_text(LocatorsOrderPage.order_is_processed)
+
     def click_order_button(self):
         self.click_button(LocatorsMainPage.order_button_main)
 
