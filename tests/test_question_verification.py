@@ -1,7 +1,6 @@
 import allure
 import pytest
 from selenium.webdriver.support.wait import WebDriverWait
-
 from locators.locators_main_page import LocatorsMainPage
 from data import BlockAnswerText
 from pages.main_page import MainPage
@@ -24,7 +23,6 @@ class TestQuestions:
         main_page = MainPage(browser)
         main_page.click_button_cookie()
         main_page.scrolling_method()
-        WebDriverWait(browser, 3).until(EC.element_to_be_clickable(question))
-        main_page.click_button(question)
+        main_page.click_button_question(question)
         text_answer = main_page.get_element_text(answer)
         assert text_answer == true_answer

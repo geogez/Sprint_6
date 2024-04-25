@@ -1,11 +1,11 @@
 from selenium import webdriver
 import pytest
+from data import Site
 
 
 @pytest.fixture
 def browser():
     driver = webdriver.Firefox()
-    driver.implicitly_wait(10)
-    driver.get('https://qa-scooter.praktikum-services.ru/')
+    driver.get(Site.scooter)
     yield driver
     driver.quit()

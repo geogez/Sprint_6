@@ -19,15 +19,14 @@ class BasePage:
         return self.browser.find_elements(*locator)
 
     def click_button(self, locator):
-        button = self.browser.find_element(*locator)
-        button.click()
+        self.find(locator).click()
 
     def get_element_text(self, locator):
-        element = self.browser.find_element(*locator)
-        return element.text
+        WebDriverWait(self.browser, 5).until(expected_conditions.visibility_of_element_located(locator))
+        return self.find(locator).text
 
     def scroll_to_element(self, locator):
-        element = self.browser.find_element(*locator)
+        element = self.find(locator)
         self.browser.execute_script("arguments[0].scrollIntoView();", element)
 
     def element_is_visible(self, locator):
@@ -37,7 +36,7 @@ class BasePage:
         return self.browser.switch_to.window(self.browser.window_handles[-1])
 
     def fill_field(self, locator, value):
-        element = self.browser.find_element(*locator)
+        element = self.find(locator)
         element.clear()
         element.send_keys(value)
 

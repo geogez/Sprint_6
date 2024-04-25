@@ -1,5 +1,6 @@
 import allure
-
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from locators.locators_main_page import LocatorsMainPage
 from pages.base_page import BasePage
 
@@ -7,6 +8,10 @@ from pages.base_page import BasePage
 class MainPage(BasePage):
     def __init__(self, browser):
         super().__init__(browser)
+
+    def click_button_question(self, locator):
+        WebDriverWait(self.browser, 3).until(EC.element_to_be_clickable(locator))
+        self.click_button(locator)
 
     @allure.step('Нажать кнопку принять куки')
     def click_button_cookie(self):

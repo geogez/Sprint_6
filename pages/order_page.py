@@ -1,13 +1,39 @@
 import random
+from selenium.webdriver.support import expected_conditions as EC
+
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+
+from conftest import browser
 from helpers import *
 import allure
+
+from locators.locators_main_page import LocatorsMainPage
 from locators.locators_order_page import LocatorsOrderPage
 from pages.base_page import BasePage
+
 
 class OrderPage(BasePage):
     def __init__(self, browser):
         super().__init__(browser)
 
+    def click_cookie_button(self):
+        self.click_button(LocatorsMainPage.cookie_button)
+
+    def click_order_button(self):
+        self.click_button(LocatorsMainPage.order_button_main)
+
+    def click_next_button(self):
+        self.click_button(LocatorsOrderPage.button_next)
+
+    def zakaz_button_scroll(self):
+        self.scroll_to_element(LocatorsOrderPage.zakaz_button_scroll)
+
+    def zakaz_button(self):
+        WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable(LocatorsOrderPage.zakaz))
+        self.click_button(LocatorsOrderPage.zakaz)
+    def button_next(self):
+        self.click_button(LocatorsOrderPage.button_next)
     @allure.step('Заполняю форму оформления заказа персональные данные.')
     def fill_form_one(self):
         self.find(LocatorsOrderPage.metro).click()
