@@ -5,6 +5,7 @@ from locators.locators_order_page import LocatorsOrderPage
 from locators.locators_main_page import LocatorsMainPage
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from helpers import *
 
 class TestOrder:
     @allure.title('Проверка заказа через верхнюю кнопку "Заказать"')
